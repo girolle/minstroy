@@ -14,12 +14,12 @@ function stopMouse(id){
 function quizBoxInit(id){
 	box = $("#q" + id)
 	box.append($('<h2>', {id:('num_'+ id)}))
-	if (id) {$('#num_'+ id)[0].innerText = id + "/7";}
+	if (id) {$('#num_'+ id)[0].innerHTML = id + "/7";}
 	box.append($('<h1>', {id:('question_'+ id)}));
 	if (!id) {$('#question_0')[0].style.marginTop = "50px";}
 
 	$('#question_'+ id)[0].style.fontSize = h1Size;
-	$('#question_'+ id)[0].innerText = texts[id][0];
+	$('#question_'+ id)[0].innerHTML = texts[id][0];
 	box.append($('<img>',{id:('img_' + id),src:('images/' + (id) + '.png'), class:"quiz-img"}));
 
 	if (id){
@@ -27,14 +27,14 @@ function quizBoxInit(id){
 
 	for (let j = 1; j<=(texts[id].length - 1); j+=1) {
 		$("#ans-box_" + id).append($('<div>', {id:('ans_' + id + "_" + j), class: "ans-button bottom-border"}));
-		$('#ans_' + id + "_" + j)[0].innerText = texts[id][j];
+		$('#ans_' + id + "_" + j)[0].innerHTML = texts[id][j];
 		mouseOnElement($("#ans_" + id + "_"+j));
 	}
 	$('#ans_' + id + "_" + (texts[id].length - 1))[0].className =  "ans-button";
 	}
 	if (!id){
 		box.append($('<div>', {class: "next-button", id: ("next_"+id)}));
-		$("#next_"+id)[0].innerText = "ДАЛЬШЕ";
+		$("#next_"+id)[0].innerHTML = "ДАЛЬШЕ";
 		mouseOnElement($("#next_"+id));
 	}
 }
@@ -42,17 +42,17 @@ function quizBoxInit(id){
 function resultBoxInit(id, ans){
 	box = $("#a"+id)
 	box.append($('<h2>', {id:('num0_'+ id)}))
-	if (id) {$('#num_'+ id)[0].innerText = id + "/7";}
+	if (id) {$('#num_'+ id)[0].innerHTML = id + "/7";}
 
 	box.append($('<h1>', {id:('question0_'+ id), class:"free-space"}));
 	$('#question0_'+ id)[0].style.fontSize = h1Size;
 
 
 	$('#question0_'+ id)[0].style.marginTop = "15px";
-	$('#question0_'+ id)[0].innerText = answers[id][ans];
+	$('#question0_'+ id)[0].innerHTML = answers[id][ans];
 	box.append($('<div>', {class: "next-button", id: ("next0_"+id)}));
 	let b = $("#next0_"+id);
-	b[0].innerText = "ДАЛЬШЕ";
+	b[0].innerHTML = "ДАЛЬШЕ";
 	b.click(()=>{
 		b[0].style.opacity = "1";
 		stopMouse(id);
@@ -65,7 +65,7 @@ function resultBoxInit(id, ans){
 
 texts = [["Привет! Представим, что Вы руководитель небольшой девелоперской компании, и вы приняли решение переходить на международный уровень."],
 [
-	"Этап первый: необходимо найти партнеров. Как Вы будете это делать?",
+	"Этап первый: необходимо найти партнеров.<br>Как Вы будете это делать?",
 	"Самостоятельно, попробую погуглить",
 	"Спрошу у коллег по отрасли",
 	"Обращусь за консультацией в государственные структуры"
@@ -152,7 +152,7 @@ for (i = 0; i< 8; i+=1) {quizBoxInit(i);}
 function start(){
 	let box = $("#q0");
 	box[0].style.display = "inline-block";
-	$("#next_0")[0].style.innerText="ДАЛЬШЕ";
+	$("#next_0")[0].style.innerHTML="ДАЛЬШЕ";
 			$("#next_0").click(()=>{
 				box[0].style.display = "none";
 				clickAns(1);
